@@ -1,20 +1,26 @@
-# Python cache
+# Python
 __pycache__/
 *.pyc
 
-# Base de datos
-data/*.db
+# SQLite
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
 
 # Logs
-logs/*
-*.log
+logs/
+
+# Cache
+cache/
 
 # Temporales
-cache/*
-temp/*
+temp/
 
-# Entorno virtual
+# Entornos virtuales
 .venv/
+venv/
+env/
 
 # VS Code
 .vscode/
