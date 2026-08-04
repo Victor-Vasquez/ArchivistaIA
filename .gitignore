@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Base de datos
+data/*.db
+
+# Logs
+logs/*
+*.log
+
+# Temporales
+cache/*
+temp/*
+
+# Entorno virtual
+.venv/
+
+# VS Code
+.vscode/
