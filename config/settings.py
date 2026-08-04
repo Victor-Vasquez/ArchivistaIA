@@ -1,24 +1,21 @@
 from pathlib import Path
 
-# ============================================================
-# CONFIGURACIÓN GENERAL
-# ============================================================
-
 APP_NAME = "Archivista IA"
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
-# Disco que se analizará
+# Unidad a analizar
 ROOT_FOLDER = Path(r"E:\\")
 
 # Base de datos
 DATABASE = Path("data") / "archivista.db"
 
-# Directorios
+# Carpetas internas
 LOG_FOLDER = Path("logs")
 CACHE_FOLDER = Path("cache")
 TEMP_FOLDER = Path("temp")
 
-# Extensiones soportadas
+
+# Extensiones multimedia
 
 VIDEO_EXTENSIONS = {
     ".mp4",
@@ -41,4 +38,16 @@ AUDIO_EXTENSIONS = {
     ".aac",
     ".m4a",
     ".wma",
+}
+
+
+# Carpetas que no necesitan análisis pesado
+
+IGNORE_FOLDERS = {
+    "$RECYCLE.BIN",
+    "System Volume Information",
+    "WindowsImageBackup",
+    "instaladores",
+    "nuevos_instaladores",
+    "Mac Driver",
 }

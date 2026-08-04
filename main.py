@@ -1,14 +1,25 @@
 from core.database import Database
+from core.scanner import Scanner
 
-print("=" * 50)
-print("Archivista IA")
-print("Versión 0.1")
-print("=" * 50)
+from config.settings import VERSION
+
+
+print("="*60)
+print(f"Archivista IA v{VERSION}")
+print("="*60)
+
 
 db = Database()
 
-print("Base de datos creada correctamente.")
+
+scanner = Scanner(db)
+
+
+scanner.scan()
+
 
 db.close()
 
-print("Fin.")
+
+print()
+print("Proceso terminado.")
