@@ -1,25 +1,6 @@
-from core.database import Database
-from core.scanner import Scanner
+from core.duplicates import posibles_duplicados
 
-from config.settings import VERSION
-
-
-print("="*60)
-print(f"Archivista IA v{VERSION}")
-print("="*60)
-
-
-db = Database()
-
-
-scanner = Scanner(db)
-
-
-scanner.scan()
-
-
-db.close()
-
+duplicados = posibles_duplicados()
 
 print()
-print("Proceso terminado.")
+print("Posibles duplicados:", len(duplicados))
