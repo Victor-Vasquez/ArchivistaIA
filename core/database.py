@@ -13,8 +13,8 @@ class Database:
         self.conn = sqlite3.connect(DATABASE)
         print("Base:", DATABASE.resolve())
 
-        self.create_tables()
-
+        from core.migrations import migrate
+        migrate(self.conn)
 
     def create_tables(self):
 
@@ -37,6 +37,8 @@ class Database:
 
             tipo TEXT,
 
+            hash TEXT,
+
             estado TEXT DEFAULT 'PENDIENTE',
 
             fecha_registro TEXT
@@ -45,7 +47,6 @@ class Database:
         """)
 
         self.conn.commit()
-
 
     def insert_file(self, archivo):
 
@@ -61,9 +62,10 @@ class Database:
                 tamano,
                 fecha_modificacion,
                 tipo,
+                hash,
                 fecha_registro
             )
-            VALUES (?,?,?,?,?,?,?)
+            VALUES (?,?,?,?,?,?,?,?)
             """,
             (
                 archivo["ruta"],
@@ -72,21 +74,28 @@ class Database:
                 archivo["tamano"],
                 archivo["fecha_modificacion"],
                 archivo["tipo"],
+                None,
                 datetime.now().isoformat()
             ))
 
-            print("Rowcount:", cursor.rowcount)
-            print("LastRowId:", cursor.lastrowid)
-
             self.conn.commit()
 
-            cursor.execute("SELECT COUNT(*) FROM archivos")
-            print("Total registros:", cursor.fetchone()[0])
-
-        except Exception as e:
+        except Exception:
             import traceback
             traceback.print_exc()
 
     def close(self):
 
         self.conn.close()
+
+    def actualizar_hash(self, ruta, hash_archivo):
+
+        cursor = self.conn.cursor()
+
+        cursor.execute("""
+            UPDATE archivos
+            SET hash_archivo = ?
+            WHERE ruta = ?
+        """, (hash_archivo, ruta))
+
+        self.conn.commit()
