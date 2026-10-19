@@ -1,0 +1,14 @@
+ArchivistaIA
+- Objetivo del proyecto
+- Arquitectura decidida
+- Python 3.12
+- SQLite
+- faster-whisper
+- política de no borrar datos históricos
+- disco E: como archivo multimedia
+- reglas para trabajos largos
+- fallback FFmpeg
+- cómo manejar hashes y duplicados
+- estrategia de transcripción
+- comandos de prueba permitidos
+- cosas que Codex nunca debe hacer sin autorización
